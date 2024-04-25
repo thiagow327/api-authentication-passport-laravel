@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  passport-app:
+    build:
+      context: ./
+      dockerfile: Dockerfile-laravel
+    container_name: passport-app
+    ports:
+      - "8004:8000"
+    volumes:
+      - .:/var/www/html
+    environment:
+      - LARAVEL_VERSION=10
+    networks:
+      - database-network-nanicas
+
+networks:
+  database-network-nanicas:
+    external: true
+    name: database-mysql_database-network-nanicas
